@@ -1,0 +1,260 @@
+/* 全局样式重置：消除默认边距 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Microsoft YaHei", sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* 头部样式：居中+深色背景 */
+header {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #2c3e50;
+    color: white;
+}
+
+header h1 {
+    margin-bottom: 10px;
+    font-size: 2rem;
+}
+
+/* 播放器容器：居中+白色背景+阴影 */
+.player-container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+/* 专辑封面：圆形+居中+悬停放大效果 */
+.cover-wrapper {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.cover-wrapper img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.cover-wrapper img:hover {
+    transform: scale(1.05); /* 鼠标悬停时放大5% */
+}
+
+/* 歌曲信息：居中 */
+.song-info {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+#song-title {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+#song-artist {
+    color: #666;
+    font-size: 1rem;
+}
+
+/* 进度条：flex布局+自定义滑块 */
+.progress-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#progress-bar {
+    flex: 1; /* 进度条占满剩余空间 */
+    height: 6px;
+    border-radius: 3px;
+    background-color: #ddd;
+    outline: none;
+    -webkit-appearance: none; /* 清除默认样式 */
+}
+
+/* 自定义进度条滑块 */
+#progress-bar::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: #3498db;
+    cursor: pointer;
+}
+
+/* 控制按钮：居中+ hover变色 */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.button-group button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #3498db;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+
+
+/* （原有样式：全局重置、header、player-container、cover-wrapper、control-panel等） */
+
+/* 播放控制按钮组样式（原有） */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.button-group button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #3498db;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button-group button:hover {
+    background-color: #2980b9;
+}
+
+/* ========== 新增MV相关CSS（从此处开始添加） ========== */
+/* 1. MV弹窗遮罩层：全屏覆盖，默认隐藏 */
+.mv-modal {
+    display: none; /* 默认不显示，通过JS控制显示 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.85); /* 半透明黑色遮罩 */
+    z-index: 1200; /* 层级最高，确保覆盖所有元素 */
+    justify-content: center;
+    align-items: center;
+}
+
+/* 2. MV弹窗内容容器：限制宽度，居中显示 */
+.mv-modal-content {
+    width: 80%;
+    max-width: 1000px; /* 大屏下最大宽度，避免视频过大 */
+    position: relative; /* 为关闭按钮定位做铺垫 */
+}
+
+/* 3. MV关闭按钮：右上角关闭图标 */
+.mv-close {
+    position: absolute;
+    top: -35px;
+    right: 0;
+    color: #ffffff;
+    font-size: 32px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.mv-close:hover {
+    color: #ff4444; /* hover时变红，提升交互反馈 */
+}
+
+/* 4. MV播放器样式：自适应宽度，圆角美化 */
+#mv-player {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+/* ========== MV相关CSS结束 ========== */
+
+/* （原有样式：playlist-container、响应式媒体查询等） */
+/* 响应式适配（小屏设备） */
+@media (max-width: 600px) {
+    .player-container {
+        margin: 15px;
+        padding: 15px;
+    }
+
+    .cover-wrapper img {
+        width: 150px;
+        height: 150px;
+    }
+
+    /* 补充MV小屏适配（可选） */
+    .mv-modal-content {
+        width: 95%; /* 小屏下占满大部分宽度 */
+    }
+}
+
+
+
+.button-group button:hover {
+    background-color: #2980b9; /* 鼠标悬停时加深颜色 */
+}
+
+/* 播放列表：列表样式+选中高亮 */
+.playlist-container h3 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #eee;
+}
+
+#playlist {
+    list-style: none; /* 清除默认列表样式 */
+}
+
+#playlist li {
+    padding: 12px 15px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#playlist li.active {
+    background-color: #3498db; /* 选中的歌曲高亮 */
+    color: white;
+}
+
+#playlist li:hover:not(.active) {
+    background-color: #eee; /* 未选中歌曲 hover 变色 */
+}
+
+/* 响应式设计：适配手机屏幕 */
+@media (max-width: 600px) {
+    .player-container {
+        margin: 15px;
+        padding: 15px;
+    }
+
+    .cover-wrapper img {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+
+
